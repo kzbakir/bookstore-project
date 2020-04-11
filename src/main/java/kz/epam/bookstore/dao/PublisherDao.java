@@ -9,17 +9,17 @@ import java.util.List;
 public class PublisherDao implements BaseDao<Publisher> {
 
     @Override
-    public List<Publisher> getAll() throws SQLException, ConnectionPoolException {
+    public List<Publisher> getAll() throws ConnectionPoolException {
         return null;
     }
 
     @Override
-    public Publisher getById(int id) throws SQLException, ConnectionPoolException {
+    public Publisher getById(int id) throws ConnectionPoolException {
         return null;
     }
 
     @Override
-    public void update(Publisher publisher) throws SQLException, ConnectionPoolException {
+    public void update(Publisher publisher) throws ConnectionPoolException {
 
     }
 

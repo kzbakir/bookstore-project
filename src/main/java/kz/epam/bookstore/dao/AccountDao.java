@@ -2,7 +2,7 @@ package kz.epam.bookstore.dao;
 
 import kz.epam.bookstore.connection.ConnectionPool;
 import kz.epam.bookstore.connection.ConnectionPoolException;
-import kz.epam.bookstore.entity.Book;
+import kz.epam.bookstore.entity.Account;
 import org.apache.log4j.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,33 +11,33 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BookDao implements BaseDao<Book> {
+public class AccountDao implements BaseDao<Account> {
+
     private ConnectionPool connectionPool;
     private Connection connection;
     private Logger logger = Logger.getLogger(this.getClass().getName());
-    private final String GET_BY_ID_QUERY = "SELECT * FROM Book WHERE ID=?;";
-    private final String GET_ALL_QUERY = "SELECT * FROM Book;";
-    private final String UPDATE_QUERY = "UPDATE Book SET title = ?, description = ?,price = ?,publisher_id= ?,language_id =?, image_id =? WHERE id = ?";
-    private final String DELETE_QUERY = "DELETE FROM Book WHERE id=?";
-    private final String CREATE_QUERY = "INSERT INTO Book (title, description,price,publisher_id,language_id, image_id VALUES(?,?,?,?,?,?)";
+    private final String GET_BY_ID_QUERY = "SELECT * FROM account WHERE ID=?;";
+    private final String GET_ALL_QUERY = "SELECT * FROM account;";
+    private final String UPDATE_QUERY = "UPDATE account SET login = ?,password = ?,email = ?,phone_number = ?,is_admin =? WHERE id = ?";
+    private final String DELETE_QUERY = "DELETE FROM account WHERE id=?";
+    private final String CREATE_QUERY = "INSERT INTO account (login, password,email,phone_number,is_admin VALUES(?,?,?,?,?)";
 
     @Override
-    public List<Book> getAll() throws ConnectionPoolException {
-        List<Book> list = new ArrayList<>();
+    public List<Account> getAll() throws ConnectionPoolException {
+        List<Account> list = new ArrayList<>();
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL_QUERY)) {
             ResultSet rs = preparedStatement.executeQuery();
             while (rs.next()) {
-                Book book = new Book();
-                book.setId(rs.getInt("id"));
-                book.setTitle(rs.getString("title"));
-                book.setDescription(rs.getString("description"));
-                book.setPrice(rs.getDouble("price"));
-                book.setLanguageId(rs.getInt("language_id"));
-                book.setPublisherId(rs.getInt("publisher_id"));
-                book.setImageId(rs.getInt("image_id"));
-                list.add(book);
+                Account account = new Account();
+                account.setId(rs.getInt("id"));
+                account.setLogin(rs.getString("login"));
+                account.setPassword(rs.getString("password"));
+                account.setEmail(rs.getString("email"));
+                account.setPhoneNumber(rs.getString("phone_number"));
+                account.setAdmin(rs.getBoolean("is_admin"));
+                list.add(account);
             }
         } catch (SQLException e) {
             logger.error(e, e);
@@ -48,41 +48,40 @@ public class BookDao implements BaseDao<Book> {
     }
 
     @Override
-    public Book getById(int id) throws ConnectionPoolException {
+    public Account getById(int id) throws ConnectionPoolException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
-        Book book = new Book();
+        Account account = new Account();
         try (PreparedStatement preparedStatement = connection.prepareStatement(GET_BY_ID_QUERY)) {
             preparedStatement.setInt(1, id);
             ResultSet rs = preparedStatement.executeQuery();
             rs.next();
-            book.setId(rs.getInt("id"));
-            book.setTitle(rs.getString("title"));
-            book.setDescription(rs.getString("description"));
-            book.setPrice(rs.getDouble("price"));
-            book.setLanguageId(rs.getInt("language_id"));
-            book.setPublisherId(rs.getInt("publisher_id"));
-            book.setImageId(rs.getInt("image_id"));
+            account.setId(rs.getInt("id"));
+            account.setLogin(rs.getString("login"));
+            account.setPassword(rs.getString("password"));
+            account.setEmail(rs.getString("email"));
+            account.setPhoneNumber(rs.getString("phone_number"));
+            account.setAdmin(rs.getBoolean("is_admin"));
         } catch (SQLException e) {
             logger.error(e, e);
         } finally {
             connectionPool.putConnection(connection);
         }
-        return book;
+        return account;
     }
 
     @Override
-    public void update(Book book) throws ConnectionPoolException {
+    public void update(Account account) throws ConnectionPoolException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY)) {
-            preparedStatement.setString(1, book.getTitle());
-            preparedStatement.setString(2, book.getDescription());
-            preparedStatement.setDouble(3, book.getPrice());
-            preparedStatement.setInt(4, book.getPublisherId());
-            preparedStatement.setInt(5, book.getLanguageId());
-            preparedStatement.setInt(6, book.getImageId());
-            preparedStatement.setInt(7,book.getId());
+            preparedStatement.setString(1, account.getLogin());
+            preparedStatement.setString(2, account.getPassword());
+            preparedStatement.setString(3, account.getEmail());
+            preparedStatement.setString(4, account.getPhoneNumber());
+            preparedStatement.setBoolean(5, account.isAdmined());
+            preparedStatement.setInt(6, account.getId());
+            preparedStatement.executeQuery();
         } catch (SQLException e) {
             logger.error(e, e);
         } finally {
@@ -91,11 +90,11 @@ public class BookDao implements BaseDao<Book> {
     }
 
     @Override
-    public void delete(Book book) throws ConnectionPoolException {
+    public void delete(Account account) throws ConnectionPoolException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(DELETE_QUERY)) {
-            preparedStatement.setInt(1, book.getId());
+            preparedStatement.setInt(1, account.getId());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error(e, e);
@@ -105,16 +104,15 @@ public class BookDao implements BaseDao<Book> {
     }
 
     @Override
-    public void create(Book book) throws ConnectionPoolException {
+    public void create(Account account) throws ConnectionPoolException {
         connectionPool = ConnectionPool.getInstance();
         connection = connectionPool.takeConnection();
         try (PreparedStatement preparedStatement = connection.prepareStatement(CREATE_QUERY)) {
-            preparedStatement.setString(1, book.getTitle());
-            preparedStatement.setString(2, book.getDescription());
-            preparedStatement.setDouble(3, book.getPrice());
-            preparedStatement.setInt(4,book.getPublisherId());
-            preparedStatement.setInt(5,book.getLanguageId());
-            preparedStatement.setInt(6,book.getImageId());
+            preparedStatement.setString(1, account.getLogin());
+            preparedStatement.setString(2, account.getPassword());
+            preparedStatement.setString(3, account.getEmail());
+            preparedStatement.setString(4, account.getPhoneNumber());
+            preparedStatement.setBoolean(5, account.isAdmined());
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             logger.error(e, e);

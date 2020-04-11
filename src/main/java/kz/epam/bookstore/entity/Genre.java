@@ -1,23 +1,28 @@
 package kz.epam.bookstore.entity;
 
 public class Genre {
-    private int id;
+    private Integer id;
     private String name;
+    private Integer classificationId;
 
-    public Genre(int id , String name){
+    public Genre(Integer id, String name, Integer classificationId) {
         this.id = id;
         this.name = name;
+        this.classificationId = classificationId;
     }
 
     public Genre(String name) {
         this.name = name;
     }
 
-    public int getId() {
+    public Genre() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

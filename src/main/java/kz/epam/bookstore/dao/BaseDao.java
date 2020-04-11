@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface BaseDao<T> {
 
-    List<T> getAll() throws SQLException, ConnectionPoolException;
+    List<T> getAll() throws ConnectionPoolException;
 
-    T getById(int id) throws SQLException, ConnectionPoolException;
+    T getById(int id) throws ConnectionPoolException;
 
-    void update(T t) throws SQLException, ConnectionPoolException;
+    void update(T t) throws ConnectionPoolException;
 
     void delete(T t) throws ConnectionPoolException;
 

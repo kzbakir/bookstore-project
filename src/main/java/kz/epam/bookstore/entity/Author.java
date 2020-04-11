@@ -3,7 +3,7 @@ package kz.epam.bookstore.entity;
 import java.util.Objects;
 
 public class Author {
-    private int id;
+    private Integer id;
     private String firstName;
     private String lastName;
 
@@ -12,7 +12,7 @@ public class Author {
         this.lastName = lastName;
     }
 
-    public Author(int id, String firstName, String lastName) {
+    public Author(Integer id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,11 +21,11 @@ public class Author {
     public Author() {
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -63,7 +63,7 @@ public class Author {
     @Override
     public String toString() {
         return "Author {" +
-                "id = " + id  +
+                "id = " + id +
                 ", First Name = " + firstName +
                 ", Last Name = " + lastName +
                 '}';

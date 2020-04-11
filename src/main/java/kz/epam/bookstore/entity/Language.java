@@ -1,23 +1,26 @@
 package kz.epam.bookstore.entity;
 
 public class Language {
-    private int id;
+    private Integer id;
     private String name;
 
     public Language(String name) {
         this.name = name;
     }
 
-    public Language(int id, String name) {
+    public Language(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Language() {
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

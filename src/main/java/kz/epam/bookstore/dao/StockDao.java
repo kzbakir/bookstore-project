@@ -9,17 +9,17 @@ import java.util.List;
 public class StockDao implements BaseDao<Stock> {
 
     @Override
-    public List<Stock> getAll() throws SQLException, ConnectionPoolException {
+    public List<Stock> getAll() throws ConnectionPoolException {
         return null;
     }
 
     @Override
-    public Stock getById(int id) throws SQLException, ConnectionPoolException {
+    public Stock getById(int id) throws ConnectionPoolException {
         return null;
     }
 
     @Override
-    public void update(Stock stock) throws SQLException, ConnectionPoolException {
+    public void update(Stock stock) throws ConnectionPoolException {
 
     }
 

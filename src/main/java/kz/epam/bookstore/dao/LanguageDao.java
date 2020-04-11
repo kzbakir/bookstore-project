@@ -9,17 +9,17 @@ import java.util.List;
 public class LanguageDao implements BaseDao<Language> {
 
     @Override
-    public List<Language> getAll() throws SQLException, ConnectionPoolException {
+    public List<Language> getAll() throws ConnectionPoolException {
         return null;
     }
 
     @Override
-    public Language getById(int id) throws SQLException, ConnectionPoolException {
+    public Language getById(int id) throws ConnectionPoolException {
         return null;
     }
 
     @Override
-    public void update(Language language) throws SQLException, ConnectionPoolException {
+    public void update(Language language) throws ConnectionPoolException {
 
     }
 

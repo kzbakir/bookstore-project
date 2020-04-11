@@ -1,20 +1,22 @@
 package kz.epam.bookstore.entity;
 
-public class Image {
-    private int id;
-    private String link;
+public class BookImage {
+    private Integer id;
+    private byte[] image;
     private String description;
 
-    public Image(int id, String link, String description) {
+    public BookImage(int id, byte[] image, String description) {
         this.id = id;
-        this.link = link;
+        this.image = image;
         this.description = description;
     }
 
-    public Image(String link, String description) {
-        this.link = link;
+    public BookImage(byte[] image, String description) {
+        this.image = image;
         this.description = description;
     }
+
+    public  BookImage(){}
 
     public int getId() {
         return id;
@@ -24,12 +26,12 @@ public class Image {
         this.id = id;
     }
 
-    public String getLink() {
-        return link;
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setLink(String link) {
-        this.link = link;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
     public String getDescription() {

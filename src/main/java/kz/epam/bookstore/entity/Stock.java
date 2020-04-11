@@ -1,27 +1,27 @@
 package kz.epam.bookstore.entity;
 
 public class Stock {
-    private int bookId;
-    private int quantity;
+    private Integer bookId;
+    private Integer quantity;
 
     public Stock(int bookId, int quantity) {
         this.bookId = bookId;
         this.quantity = quantity;
     }
 
-    public int getBookId() {
+    public Integer getBookId() {
         return bookId;
     }
 
-    public void setBookId(int bookId) {
+    public void setBookId(Integer bookId) {
         this.bookId = bookId;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 }

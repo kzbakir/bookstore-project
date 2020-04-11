@@ -1,33 +1,30 @@
 package kz.epam.bookstore.entity;
 
 public class Book {
-    private int id;
+    private Integer id;
     private String title;
     private String description;
-    private float price;
-    private int authorId;
-    private int publisherId;
-    private int genreId;
-    private int imageId;
-    private int languageId;
+    private Double price;
+    private Integer publisherId;
+    private Integer imageId;
+    private Integer languageId;
 
-    public Book(String title, String description, float price, int authorId, int publisherId, int genreId, int imageId, int languageId) {
+    public Book(String title, String description, Double price, Integer publisherId, Integer imageId, Integer languageId) {
         this.title = title;
         this.description = description;
         this.price = price;
-        this.authorId = authorId;
         this.publisherId = publisherId;
-        this.genreId = genreId;
         this.imageId = imageId;
         this.languageId = languageId;
     }
-    public Book(){}
 
-    public int getId() {
+    public Book() {}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -47,51 +44,35 @@ public class Book {
         this.description = description;
     }
 
-    public float getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
-    public int getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(int authorId) {
-        this.authorId = authorId;
-    }
-
-    public int getPublisherId() {
+    public Integer getPublisherId() {
         return publisherId;
     }
 
-    public void setPublisherId(int publisherId) {
+    public void setPublisherId(Integer publisherId) {
         this.publisherId = publisherId;
     }
 
-    public int getGenreId() {
-        return genreId;
-    }
-
-    public void setGenreId(int genreId) {
-        this.genreId = genreId;
-    }
-
-    public int getImageId() {
+    public Integer getImageId() {
         return imageId;
     }
 
-    public void setImageId(int imageId) {
+    public void setImageId(Integer imageId) {
         this.imageId = imageId;
     }
 
-    public int getLanguageId() {
+    public Integer getLanguageId() {
         return languageId;
     }
 
-    public void setLanguageId(int languageId) {
+    public void setLanguageId(Integer languageId) {
         this.languageId = languageId;
     }
 }

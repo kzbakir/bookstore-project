@@ -34,6 +34,7 @@ public final class ConnectionPool {
             this.poolSize = Integer.parseInt(dbResourceManager.getValue(DBParameter.DB_POOL_SIZE));
         } catch (NumberFormatException e) {
             poolSize = 5;
+            logger.error(e);
         }
     }
 
@@ -61,10 +62,8 @@ public final class ConnectionPool {
                 connectionQueue.add(connection);
                 System.out.println("Size queue in initPoolData: " + connectionQueue.size());
             }
-        } catch (SQLException e) {
-            throw new ConnectionPoolException("SQLException in ConnectionPool", e);
-        } catch (ClassNotFoundException e) {
-            throw new ConnectionPoolException("Can't find database driver class", e);
+        } catch (SQLException | ClassNotFoundException e) {
+            logger.error(e);
         }
     }
 
@@ -99,7 +98,7 @@ public final class ConnectionPool {
             connection = connectionQueue.take();
             System.out.println("Size in takeConnection: " + connectionQueue.size());
         } catch (InterruptedException e) {
-            throw new ConnectionPoolException("Error connecting to the data source.", e);
+            logger.error(e);
         }
         return connection;
     }
@@ -109,7 +108,7 @@ public final class ConnectionPool {
             connectionQueue.put(connection);
             System.out.println("Size in putConnection: " + connectionQueue.size());
         } catch (InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
     }
 

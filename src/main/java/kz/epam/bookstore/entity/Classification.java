@@ -1,19 +1,14 @@
 package kz.epam.bookstore.entity;
 
-public class Publisher {
+public class Classification {
     private Integer id;
-    private String name;
 
-    public Publisher(Integer id, String name) {
+    public Classification(Integer id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Publisher(String name) {
-        this.name = name;
-    }
-
-    public Publisher(){}
+    public Classification(){}
 
     public Integer getId() {
         return id;
@@ -30,4 +25,6 @@ public class Publisher {
     public void setName(String name) {
         this.name = name;
     }
+
+    private String name;
 }
