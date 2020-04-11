@@ -60,7 +60,6 @@ public final class ConnectionPool {
             while (connectionQueue.size() < maxConnections) {
                 connection = DriverManager.getConnection(url, user, password);
                 connectionQueue.add(connection);
-                System.out.println("Size queue in initPoolData: " + connectionQueue.size());
             }
         } catch (SQLException | ClassNotFoundException e) {
             logger.error(e);
@@ -80,7 +79,6 @@ public final class ConnectionPool {
 
     public void dispose() {
         clearConnectionQueue();
-        System.out.println("Size in dispose: " + connectionQueue.size());
     }
 
     private void clearConnectionQueue() {
@@ -96,7 +94,6 @@ public final class ConnectionPool {
         try {
             initPoolData();
             connection = connectionQueue.take();
-            System.out.println("Size in takeConnection: " + connectionQueue.size());
         } catch (InterruptedException e) {
             logger.error(e);
         }
@@ -106,7 +103,6 @@ public final class ConnectionPool {
     public void putConnection(Connection connection) {
         try {
             connectionQueue.put(connection);
-            System.out.println("Size in putConnection: " + connectionQueue.size());
         } catch (InterruptedException e) {
             logger.error(e);
         }
