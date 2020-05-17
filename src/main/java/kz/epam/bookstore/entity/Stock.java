@@ -9,6 +9,8 @@ public class Stock {
         this.quantity = quantity;
     }
 
+    public Stock(){}
+
     public Integer getBookId() {
         return bookId;
     }

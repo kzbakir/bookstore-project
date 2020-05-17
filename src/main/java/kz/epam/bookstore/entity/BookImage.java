@@ -26,15 +26,15 @@ public class BookImage {
         this.id = id;
     }
 
-    public byte[] getImage() {
-        return image;
+    public byte[] getImage(byte image) {
+        return this.image;
     }
 
     public void setImage(byte[] image) {
         this.image = image;
     }
 
-    public String getDescription() {
+    public String getDescription(String desription) {
         return description;
     }
 

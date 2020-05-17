@@ -2,7 +2,7 @@ package kz.epam.bookstore.entity;
 
 public class Account {
     private Integer id;
-    private String login;
+    private String username;
     private String password;
     private Boolean isAdmin;
     private String email;
@@ -10,7 +10,7 @@ public class Account {
 
     public Account(Integer id, String login, String password, Boolean isAdmin, String email, String phoneNumber) {
         this.id = id;
-        this.login = login;
+        this.username = login;
         this.password = password;
         this.isAdmin = isAdmin;
         this.email = email;
@@ -18,7 +18,7 @@ public class Account {
     }
 
     public Account(String login, String password, Boolean isAdmin, String email, String phoneNumber) {
-        this.login = login;
+        this.username = login;
         this.password = password;
         this.isAdmin = isAdmin;
         this.email = email;
@@ -36,12 +36,12 @@ public class Account {
         this.id = id;
     }
 
-    public String getLogin() {
-        return login;
+    public String getUsername() {
+        return username;
     }
 
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

@@ -1,12 +1,15 @@
 package kz.epam.bookstore.dao;
 
+import kz.epam.bookstore.connection.ConnectionPool;
 import kz.epam.bookstore.connection.ConnectionPoolException;
 import kz.epam.bookstore.entity.BookImage;
-
-import java.sql.SQLException;
+import java.sql.Connection;
 import java.util.List;
 
+
 public class BookImageDao implements BaseDao<BookImage> {
+    private ConnectionPool connectionPool;
+    private Connection connection;
 
     @Override
     public List<BookImage> getAll() throws ConnectionPoolException {
